@@ -1,19 +1,19 @@
 package day1;
 
-public class º¯¼ö¹®Á¦ {
+public class ë³€ìˆ˜ë¬¸ì œ {
 	public static void main(String args[]) {
-		//¹®Á¦1. È«±æµ¿ÀÇ ±¹¾î Á¡¼ö¸¦ ÀúÀåÇÏ·Á ÇÑ´Ù. 
-		//ÀÌ¶§ ÇÊ¿äÇÑ º¯¼ö¸¦ ¼±¾ðÇÏ¼¼¿ä. ´Ü, Á¡¼ö´Â 
-		//Á¤¼ö·Î ÀúÀåÇÑ´Ù.
+		//ë¬¸ì œ1. í™ê¸¸ë™ì˜ êµ­ì–´ ì ìˆ˜ë¥¼ ì €ìž¥í•˜ë ¤ í•œë‹¤. 
+		//ì´ë•Œ í•„ìš”í•œ ë³€ìˆ˜ë¥¼ ì„ ì–¸í•˜ì„¸ìš”. ë‹¨, ì ìˆ˜ëŠ” 
+		//ì •ìˆ˜ë¡œ ì €ìž¥í•œë‹¤.
 		
 		int hongScore = 99;
 		long hongScore1 = 99L;
 		short hongScore2 = 99;
 		byte hongScore3 = 99;
 		
-		//¹®Á¦2. È«±æµ¿ÀÇ ¼öÇÐ Á¡¼ö¸¦ ÀúÀåÇÏ·Á ÇÑ´Ù.
-		//ÀÌ¶§ ÇÊ¿äÇÑ º¯¼ö¸¦ ¼±¾ðÇÏ¼¼¿ä. ´Ü, Á¡¼ö´Â
-		//A, B, C, D, F·Î ÀúÀåÇÑ´Ù.
+		//ë¬¸ì œ2. í™ê¸¸ë™ì˜ ìˆ˜í•™ ì ìˆ˜ë¥¼ ì €ìž¥í•˜ë ¤ í•œë‹¤.
+		//ì´ë•Œ í•„ìš”í•œ ë³€ìˆ˜ë¥¼ ì„ ì–¸í•˜ì„¸ìš”. ë‹¨, ì ìˆ˜ëŠ”
+		//A, B, C, D, Fë¡œ ì €ìž¥í•œë‹¤.
 		char hongMathScore1 = 'A';
 		char hongMathScore2 = 'B';
 		char hongMathScore3 = 'C';
@@ -27,8 +27,8 @@ public class º¯¼ö¹®Á¦ {
 		long hongMathScoreN6 = 0x16L; //f
 
 		
-		//¹®Á¦3. ´ÙÀ½°ú °°ÀÌ kor, eng, math ¼ºÀûÀÌ ÀÖÀ»¶§
-		//¼ºÀûÀÇ ÇÕ°ú Æò±ÕÀ» ÀúÀåÇÒ º¯¼ö¸¦ ¼±¾ðÇÏ¼¼¿ä.
+		//ë¬¸ì œ3. ë‹¤ìŒê³¼ ê°™ì´ kor, eng, math ì„±ì ì´ ìžˆì„ë•Œ
+		//ì„±ì ì˜ í•©ê³¼ í‰ê· ì„ ì €ìž¥í•  ë³€ìˆ˜ë¥¼ ì„ ì–¸í•˜ì„¸ìš”.
 		
 		int kor =100;
 		int math = 90;
@@ -38,7 +38,7 @@ public class º¯¼ö¹®Á¦ {
 		double avr;
 		float avr2;
 		
-		/* ¹®Á¦4. ´ÙÀ½ Áß ¹®Á¦°¡ ÀÖ´Â º¯¼ö ¼±¾ðÀº? 2, 4  ´ä: 2,4,5 Æ²¸²;; ¤¸¤²¤¡
+		/* ë¬¸ì œ4. ë‹¤ìŒ ì¤‘ ë¬¸ì œê°€ ìžˆëŠ” ë³€ìˆ˜ ì„ ì–¸ì€? 2, 4  ë‹µ: 2,4,5 í‹€ë¦¼;; ã…ˆã…‚ã„±
 		 * 1. char ch1 = 'A';
 		 * 2. char ch2 = '11';
 		 * 3. char ch3 = '_';
