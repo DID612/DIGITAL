@@ -60,7 +60,6 @@ class Card2{
 		return num;
 	}
 
-
 	public void setNum(int num) {
 		if(num <1 || num > 13) {
 			this.num = 1;
@@ -70,11 +69,9 @@ class Card2{
 		}
 	}
 
-
 	public char getShape() {
 		return shape;
 	}
-
 
 	public void setShape(char shape) {
 		switch(shape) {
