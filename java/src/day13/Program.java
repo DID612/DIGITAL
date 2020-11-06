@@ -15,4 +15,5 @@ public interface Program {
 	void searchStudent(Scanner scan);
 	void registerSubject(Scanner scan);
 	void deleteSubject(Scanner scan);
+	void matchLotto(Scanner scan);
 }

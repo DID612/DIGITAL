@@ -87,7 +87,7 @@ public class Subject {
 		
 		public Subject(String subjectTitle, String subjectCode, String professorName, int subjectTime, int subjectPoint,
 				int subjectYear, String subjectTerm, String subjectCategory, String subjectSchedule) {
-			super();
+			super(); // 이 super 왜 있는거지
 			this.subjectTitle = subjectTitle;
 			this.subjectCode = subjectCode;
 			this.professorName = professorName;
@@ -97,6 +97,9 @@ public class Subject {
 			this.subjectTerm = subjectTerm;
 			this.subjectCategory = subjectCategory;
 			this.subjectSchedule = subjectSchedule;
+		}
+		public Subject(String sTitle) {
+			subjectTitle=sTitle; // 멤버변수랑 매개변수 이름이 다르기 때문에 굳이 this 필요없다.
 		}
 		
 }

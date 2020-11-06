@@ -36,7 +36,9 @@ public class Student {
 		}*/
 		//배열이 꽉찬 경우
 		if(subjectCount == subjectList.length) {
-			//배열을 늘려주고 복사하는 작업 필요
+			Subject [] tmp = new Subject[subjectCount+10];
+			System.arraycopy(subjectList, 0, tmp, 0, subjectList.length);
+			subjectList = tmp;
 		}else {
 			subjectList[subjectCount] = subject;
 			subjectCount++;
