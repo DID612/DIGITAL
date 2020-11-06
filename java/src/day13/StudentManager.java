@@ -194,4 +194,10 @@ public class StudentManager implements Program {
 		s.print();
 		System.out.println("---------------");
 	}
+
+	@Override
+	public void matchLotto(Scanner scan) {
+		// TODO Auto-generated method stub
+		
+	}
 }

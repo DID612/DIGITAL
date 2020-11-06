@@ -24,7 +24,7 @@ public class Lotto2 {
 	}
 	//로또 번호 배열에 num가 있는지 체크
 	protected boolean contain(int num) throws RuntimeException {
-		if(num <= 0 || num > 45){
+		if(num < 0 || num > 45){
 			throw new RuntimeException("숫자는 1~45이어야 합니다.");
 		}
 		//전체를 탐색해야 해서 향상된 for문 가능
@@ -50,6 +50,9 @@ public class Lotto2 {
 		return Arrays.toString(numbers).replace("[","").replace("]", "").replace(",", "");
 	}
 	
+	public int[] getNumbers() {
+		return numbers;
+	}
 	public void insertNumber(int[] arr) throws RuntimeException{
 		if(arr.length < numbers.length)
 			throw new RuntimeException("저장하려는 배열의 숫자가 적습니다.");
