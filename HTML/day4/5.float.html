@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            display: block;
+            float: right; /* 부모의 높이가 사라지는 경우도 생김 해결하는 방법
+            1.부모의 높이 직접 넣어주기*/
+            /* float:left */
+            /*2. ::appliy */
+        }
+        .p-box{
+            background-color: yellow;
+            /* height: 100px; */
+        }
+        .p-box::after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div>1</div>
+         <div>2</div>
+         <div>3</div>
+         <div>4</div> -->
+         <div>1</div><div>2</div><div>3</div><div></div>
+         <!-- inline-block은 내용을 추가 제거하다 보면 어긋나는 부분이 생길수도 있다. 
+        따라서 float:left 덧붙여보자-->
+    <div class="p-box">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+    </div>
+</body>
+</html>

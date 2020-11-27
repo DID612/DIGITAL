@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <p>
+        <form>
+            아이디:     
+            <!-- name = 서버에 전송할때 내가 보낸 데이터 이름 -->
+            <input type = "text" name = "id" placeholder="미리보기"> <br>
+            비밀번호: <input type="password" name = "pw"> <br>
+            비밀번호 확인: <input type="password2" name="pw2"> <br>
+            이메일: <input type="email" name="email"> <br>
+            성별:
+            <!-- radio박스는 name이 같아야 한다. radio1, radio2 처럼 다르게 설정할 경우
+            둘다 체크가 가능하다!! -->
+            <label>
+                <input type="radio" name="radio" value="남성"> 남성
+            </label>
+            <label>
+                <input type="radio" name="radio" value="여성"> 여성
+            </label> <br>
+            전화번호:
+            <input type="number" name="num1">
+            ·
+            <input type="number" name="num2">
+            ·
+            <input type="number" name="num3"> <br>
+            <input type="submit" value="회원가입">
+        </form>
+    </p>
+</body>
+</html>

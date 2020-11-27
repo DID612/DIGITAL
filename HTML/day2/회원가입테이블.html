@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table 태그</title>
+</head>
+<body>
+    <form action="">
+   
+     <table border="0" width="100%">
+         <tr>
+             <td></td>
+             <td> <h1>회원가입</h1></td>
+         </tr>
+        <tr>
+             <td>아이디</td>
+             <td>
+                 <input type = "text" name = "data">
+            </td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td>
+                <input type="password"> <br>
+            </td>
+        </tr>
+        <tr>
+            <td>비밀번호 확인</td>
+                <td>
+                    <input type="password">
+                </td>
+        </tr>
+        <tr>
+            <td>이메일</td>
+                <td>
+                    <input type="email" name="email">
+                </td>
+        </tr>
+        <tr>
+            <td> 성별</td>
+                <td>
+                    <label>
+                        <input type="radio" name="radie" value="남성"> 남성
+                    </label>
+                    <label>
+                        <input type="radio" name="radie" value="여성"> 여성
+                    </label>
+                </td>
+        </tr>
+        <tr>
+            <td>전화번호 </td>
+                <td>
+                    <input type="number">
+                    ·
+                    <input type="number">
+                    ·
+                    <input type="number">
+                </td>
+             <td></td>
+             <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" value="회원가입">회원가입</button>
+            </td>
+        </tr>
+     </table>
+    </form>
+     <!-- 
+         - thead, tbody, tfoot, caption 태그는 table 태그를 사용할 때 필수는 아니지만
+         사용하면 편리한 점이 있다.
+         - 순서는 thead>tbody>tfoot순으로 배치한다.
+      -->
+</body>
+</html>

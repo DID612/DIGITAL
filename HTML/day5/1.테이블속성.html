@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px solid black;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+        }
+        thead>tr:first-child{
+            background-color: yellow;
+        }
+        /* even or 2n 
+        우선순위 실행에 대해 자세히 알아보자.
+        :의 경우 여러개 쓸수도 있고 앞부터 읽는 것 같다.*/
+        tbody>tr:hover:nth-child(2n){ 
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>홍길동</td>
+                <td>100</td>
+                <td>90</td>
+            </tr>
+            <tr>
+                <td>임꺽정</td>
+                <td>90</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>이순신</td>
+                <td>100</td>
+                <td>80</td>
+            </tr>
+            <tr>
+                <td>유관순</td>
+                <td>90</td>
+                <td>80</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>합</th>
+                <th>190</th>
+                <th>170</th>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

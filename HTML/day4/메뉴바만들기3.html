@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            list-style:none
+        }
+
+        li{
+            width: CALC(100% / 4);
+            height: 30px;
+            border: 1px solid black;
+            border-right: none;
+            display: inline-block;
+            box-sizing: border-box;
+            /* position: fixed; */
+            /* bottom:0;
+            left:0;
+            right:0; */
+            /* float: left; */
+            text-align: center;
+            float: left;
+        }
+        li:last-of-type{
+            border: 1px solid black;
+        }
+
+        ul{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="box"><a href="#">메뉴1</a></li>
+        <li class="box"><a href="#">메뉴2</a></li>
+        <li class="box"><a href="#">메뉴3</a></li>
+        <li class="box"><a href="#">메뉴4</a></li>
+    </div>
+</body>
+</html>

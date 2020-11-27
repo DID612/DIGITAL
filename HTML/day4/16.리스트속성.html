@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        - list-style-type: 마커 타입 지정
+        - list-style-image: 마커 자리에 이미지를 지정
+        - list-style-position: 마커 위치(안/밖)
+        */
+        ul{
+            list-style-type: square;
+            list-style-position: inside;
+        }
+        .inside{
+            list-style-type: square;
+            list-style-position: inside;
+        }
+        .outside{
+            list-style-position: outside;
+        }
+        .none{
+            padding: 0;
+            list-style: none;
+        }
+        ul{background-color: yellowgreen;}
+        li{background-color: goldenrod;}
+    </style>
+</head>
+<body>
+    <ul class="inside">
+        <li>사과</li>
+        <li>오렌지</li>
+        <li>배</li>
+    </ul>
+    <ul class="outside">
+        <li>사과</li>
+        <li>오렌지</li>
+        <li>배</li>
+    </ul>
+    <ul class="none">
+        <li>사과</li>
+        <li>오렌지</li>
+        <li>배</li>
+    </ul>
+</body>
+</html>

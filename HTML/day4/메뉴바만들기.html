@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .menu{
+        height: 30px;
+        display: inline-block;
+        box-sizing: content-box;
+    }
+
+    /* .menu::after{
+            content: '';
+            clear: both;
+            display: inline-block;
+        } */
+
+    .box{
+      text-align: center;
+      font-size: 15px;
+      line-height: 30px;
+    }
+
+    .box:nth-child(1){
+        border: 1px solid black;
+        width: calc(1000px / 4);
+        height: 100%;
+        display: inline-block;
+        float: left;
+    }
+
+    .box:nth-child(2){
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        width: calc(1000px / 4);  
+        height: 100%;
+        display: inline-block;
+        float: left;
+    }
+    .box:nth-child(3){
+        border: 1px solid black;
+        width: calc(1000px / 4);
+        height: 100%;
+        display: inline-block;
+        float: left;
+    }
+    .box:nth-child(4){
+        border: 1px solid black;
+        border-left: none;
+        width: calc(1000px / 4);
+        height: 100%;
+        display: inline-block;
+        float: left;
+    }
+
+    .box:hover{
+        position:relative;
+        border: 1px solid black;
+        top: 10px;
+    }
+
+</style>
+</head>
+<body>
+    <div class="menu">
+        <div class="box">메뉴1</div>
+        <div class="box">메뉴2</div>
+        <div class="box">메뉴3</div>
+        <div class="box">메뉴4</div>
+    </div>
+</body>
+</html>

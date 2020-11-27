@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{min-width: 1190px;}
+        *{
+            box-sizing: border-box;
+            /* body p li ul 등 패딩과 마진 있는 애들 생략해줌!! */
+            padding: 0;
+            margin:0;
+        }
+        .box1{
+            height: 100px;
+            width: 100%;
+            border: 2px solid green;
+        }
+        .box2{
+            height: 50px;
+            width: 100%;
+            border: 2px solid red;
+        }
+        .box3{
+            height: 500px;
+            width: 100%;
+            border: 2px solid blue;
+
+        }
+        .box4{
+            height: 100%;
+            width: 1190px;
+            border: 2px solid black;
+            margin: 0 auto;
+        }
+        .menu-left{
+            border: 2px solid gold;
+            width: 750px;
+            height: 460px;
+            position: absolute;
+            margin-top: 20px;
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        .menu-right{
+            border: 2px solid blueviolet;
+            width: 350px;
+            height: 460px;
+            position: relative;
+            margin-top: 20px;
+            margin-right: 30px;
+            margin-bottom: 20px;
+            float:right;
+            padding: 16px 16px 12px 17px;
+            box-sizing: border-box;
+        }
+        .login-box>.in-box{
+            height: 135px;
+            width: 100%;
+            border: 1px solid rgb(218,225,230);
+            background-color: rgb(247,249,255);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"><div class="box4"></div></div>
+    <div class="box2"><div class="box4"></div></div>
+    <div class="box3"><div class="box4">
+        <div class="menu-left"></div>
+        <div class="menu-right">
+            <div class="login-box box">
+                <div class="in-box"></div>
+            </div>
+        </div>
+    </div></div>
+</body>
+</html>

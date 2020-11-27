@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        a태그 : 다른 페이지로 이동하게 하는 태그, 다운로드 가능하게 하는 태그
+        -href 속성 : 이동할 url,값이 없으면 현재 페이지
+            -쌍태그로 태그 안에 있는 글자를 클릭하면 이동하게 함
+            옛날에는 아이피/폴더이름/파일이름.확장자 찾기 때문에 url이라고 불렸었음
+            요즘에는 uri로 기술발전 일어남. 그렇지만 여전히 url이라 부르긴 한당
+            값에 tel: 이 나오면 핸드폰번호로 연결
+            값에 mailto: 가 나오면 이메일로 연결
+        -target 속성 
+            -_self: 기본값으로, 현재 화면에서 링크를 새로 염
+            -_blank: 다른 창에서 링크를 새로 염
+            -_parent: 부모창에서 링크를 새로 염. 부모가 없으면 _self와 같음 
+            -_top : 최고 조상에서 링크를 새로 염. 부모가 없으면 _self와 같음.
+        -download 속성
+            -download 속성을 추가하면 링크로 이동하는 것이 아니라 해당 파일을
+            다운로드함
+            -download를 이용하려면 href에 파일을 입력해야 한다.
+        </div>   
+        -->
+     <!-- 현재 a태그.html이 있는 파일에서 naver.com이라는 파일 연결
+    <a href="naver.com"> -->
+     <a href="https://www.naver.com" target="_self">네이버</a>
+     <br>
+     <!-- 값이 // 나 http:// <= 내 파일이 아니라 url로 인식하게 함!! -->
+     <a href="//naver.com" target="_blank">네이버</a>
+     <br>
+     <a href="select태그.html" download="">다운로드</a>
+     <br>
+     <a href="select태그.html">select 태그 예제</a>
+     <br>
+     <!-- 대한민국 010-1234-5678 -->
+     <a href="tel:+821012345678">문의하기</a>
+     <br>
+     <a href="mailto:my60454@naver.com">메일로문의하기</a>
+</body>
+</html>

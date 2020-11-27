@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1::after{
+            content: '.';
+            clear: both;
+            display: inline;
+        }
+        .box2::before{
+            content: '';
+            /* clear: both; */
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            background-color: black;
+            /* margin-top: 1px; */
+            vertical-align: 3px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="box1">
+        <span>안녕</span>
+        <span>하세요</span>
+    </div>
+    <div class="box2">
+        <span>안녕</span>
+        <span>하세요</span>
+    </div>
+</body>
+</html>

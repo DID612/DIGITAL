@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            /* body p li ul 등 패딩과 마진 있는 애들 생략해줌!! */
+            padding: 0;
+            margin:0;
+        }
+        .header{
+            min-width: 1190px;
+            height: 161px;
+
+        }
+        .menu{
+            min-width: 1190px;
+            height: 50px;
+            border-top: 1px solid rgb(224, 227, 230);
+            border-bottom: 1px solid rgb(224, 227, 230);
+        }
+        .contents{
+            min-width: 1190px;
+            height: 500px;
+
+        }
+        .container{
+            height:100%;
+            width:1190px;
+
+            margin: 0 auto;
+        }
+        .contents>.container{
+            padding:20px 30px;
+            box-sizing: border-box  ;
+        }
+        .left{
+            width: 750px;
+            height: 100%;
+            border: 1px solid gold;
+            float: left;
+        }
+        .right{
+            width: 350px;
+            height: 100%;
+            border: 1px solid blueviolet;
+            float:right;
+        }
+        .ad{
+            background-image: url(https://siape.veta.naver.com/fxclick?eu=EU10041888&calp=-&oj=A4YjrwVVtw8g0tiI43E04Fnp0bemvv%2BINGJZ7y1jWZBGYV6e%2BSf9t8H6E0S95P480bP3Ejh%2FZAqp3PSpWl%2F9wQ&ac=8193310&src=4692888&br=3309291&evtcd=P901&x_ti=1311&tb=&oid=&sid1=&sid2=&rk=1f61c391ef6808fd11a1a900c027cbe4&eltts=qRRRi4H%2FoNNcWoQg0%2B%2Bcjw%3D%3D&lu=&brs=Y&);
+            width: 100%;
+            height: 135px;
+            border: 1px solid black;
+            margin: 0 auto; 
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container"></div>
+    </div>
+    <div class="menu">
+        <div class="container"></div>
+    </div>
+    <div class="contents">
+        <div class="container">
+            <div class="left">
+                <a href="https://siape.veta.naver.com/fxclick?eu=EU10041888&calp=-&oj=A4YjrwVVtw8g0tiI43E04Fnp0bemvv%2BINGJZ7y1jWZBGYV6e%2BSf9t8H6E0S95P480bP3Ejh%2FZAqp3PSpWl%2F9wQ&ac=8193310&src=4692888&br=3309291&evtcd=P901&x_ti=1311&tb=&oid=&sid1=&sid2=&rk=1f61c391ef6808fd11a1a900c027cbe4&eltts=qRRRi4H%2FoNNcWoQg0%2B%2Bcjw%3D%3D&lu=&brs=Y&";
+                >
+                    <div class="ad"></div>
+                </a>
+            </div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <!-- 높이 135px 광고창 737px -->
+</body>
+</html>
