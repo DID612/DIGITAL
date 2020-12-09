@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .biggest{
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            background-color: yellow;
+        }
+
+        .box{
+            border: 1px solid black;
+            background-color: yellow;
+            padding: 10px;
+            width: 502px;
+            height: 502px;
+            box-sizing: border-box;
+        }
+
+        .twice{
+            display: inline-block;
+            margin: 10px 0 10px 10px;
+            width: 239px;
+            height: 478px;
+            float: left;
+            background-color: red;
+        }
+        .biggest::after{
+            display: block;
+            margin: 10px 10px 10px 0;
+            width: 239px;
+            height: 478px;
+            background-color: skyblue;
+            content: '';
+            float: left;
+        }
+        
+        /* float를 쓰면 부모가 자식의 높이를 못 잡는다
+            .box::after를 써서 만들어주자
+         */
+        /* .twice2{
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+            width: 239px;
+            height: 478px;
+            background-color:green;
+        } */
+        
+        .left{
+            width: 50%;
+            height: 480px;
+            background-color: red;
+            float: left;
+        }
+        .right{
+            width: 50%;
+            height: 480px;
+            background-color: blue;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="biggest">
+        <div class="twice">
+        </div>
+        <div class="twice2"></div>
+    </div>
+    <div class="box">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

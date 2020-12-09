@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <style>
+            h1{
+                text-align: center;
+            }
+            form{
+                border: 1px solid black;
+                width: 500px;
+                margin: 0 auto;
+            }
+        </style>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <p>
+        <form>
+            <form action="/action_page.php" class="was-validated bordered">
+                <div class="form-group col-4">
+                  <label for="uname">아이디:</label>
+                  <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+                <div class="form-group col-4">
+                  <label for="pwd">비밀번호:</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+                <div class="form-group col-4">
+                    <label for="pwd">비밀번호 확인:</label>
+                    <input type="password" class="form-control" id="pwd">
+                  </div>
+
+                  <div class="form-group col-4">
+                    <label for="usr">이메일:</label>
+                    <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+                  </div>
+                  <div class="form-group">
+                    <div class="form-check">
+                        <div>
+                            <label for="pwd">성별:</label>
+                        </div>
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optradio">남성
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="optradio">여성
+                        </label>
+                    </div>
+                  </div>
+                    <div class="form-group col-4">
+                        <label for="usr">전화번호:</label>
+                        <input type="text" class="form-control" id="usr">
+                      </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" name="remember" required> I agree on blabla.
+                          <div class="valid-feedback">Valid.</div>
+                          <div class="invalid-feedback">Check this checkbox to continue.</div>
+                        </label>
+                      </div>
+                <button type="submit " class="btn btn-primary">회원가입</button>
+              </form>
+        </form>
+    </p>
+</body>
+</html>

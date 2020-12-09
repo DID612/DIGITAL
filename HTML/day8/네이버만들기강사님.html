@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>박스 배치 예제</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		a{
+			text-decoration: none;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		.header{
+			min-width: 1190px;
+			height: 161px;
+		}
+		.menu{
+			min-width: 1190px;
+			height: 50px;
+			border-top: 1px solid rgb(224,227,230);
+			border-bottom: 1px solid rgb(224,227,230);
+		}
+		.contents{
+			min-width: 1190px;
+		}
+		.container{
+			height: 100%;
+			width: 1190px;
+			margin: 0 auto;
+		}
+		.contents>.container{
+			padding: 20px 30px;
+			box-sizing: border-box;
+		}
+		.left{
+			width: 750px;
+			height: 100%;
+			float: left;
+		}
+		.right{
+			width: 350px;
+			height: 100%;
+			float: right;
+		}
+		.add img{
+			height: 135px;
+			display: block;
+			width: 750px;
+		}
+		.box{
+			margin-bottom: 12px;
+		}
+		.login-box{
+			height: 135px;
+			width: 100%;
+			border: 1px solid rgb(218,225,230);
+			background-color: rgb(247,249,250);
+			padding: 16px 16px 12px 17px;
+			box-sizing: border-box;
+		}
+		.login-box>.in-box{
+			width: 100%;
+			height: 100%;
+		}
+		.login-box .title{
+			color: gray;
+			font-size: 12px;
+			line-height: 16px;
+		}
+		.login-btn{
+			display: block;
+			background-color: #19ce60;
+			border: 1px solid #15c654;
+			font-size: 16px;
+			line-height: 16px;
+			font-weight: bold;
+			color: #fff;
+			padding: 15px 0;
+			border-radius: 2px;
+			text-align: center;
+			text-decoration: none;
+			margin-top: 11px;
+		}
+		.login-box .sub-left{
+			float: left;
+		}
+		.login-box .sub-right{
+			float: right;
+		}
+		.login-box .sub-box::after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+		.find-id,
+		.find-pw,
+		.signup{
+			color: #404040;
+			line-height: 16px;
+			font-size: 12px;
+			display: inline-block;
+		}
+		.login-box .sub-box{
+			margin: 10px 8px 0 4px;	
+		}
+		.login-box .point{
+			display: inline-block;
+			height: 4px;
+			width: 4px;
+			background-color: #404040;
+			border-radius: 2px;
+		}
+		.issue-box{
+			height: 49px;
+			box-sizing: border-box;
+			padding: 12px 15px 11px 15px;
+			line-height: 24px;
+			border: 1px solid #dae1e6;
+			background-color: #f7f9fa;
+			position: relative;
+		}
+		.timesquare-box{
+			height: 49px;
+			box-sizing: border-box;
+			border: 1px solid #dae1e6;
+			position: relative;
+		}
+		.timesquare-card{
+			height: 100%;
+			padding-right: 67px;
+			overflow: hidden;
+		}
+		.timesquare-box .btn-box{
+			position: absolute;
+			top: 11px;
+			right: 10px;
+			overflow: hidden;
+		}
+		.timesquare-box .btn-box .prev,
+		.timesquare-box .btn-box .next{
+			float: left;
+			background-color: #fff;
+			border: 1px solid #e4e8eb;
+		}
+		.timesquare-box .btn-box .next{
+			margin-left: -1px;
+		}
+		.timesquare-box .btn-box .prev::before{
+			content: '';
+			width: 6px;
+			height: 9px;
+			display: inline-block;
+			vertical-align: top;
+			margin: 7px 8px 6px;
+			background-image: 
+			url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			background-position: -351px -296px;
+		}
+		.timesquare-box .btn-box .next::before{
+			content: '';
+			width: 6px;
+			height: 9px;
+			display: inline-block;
+			vertical-align: top;
+			margin: 7px 8px 6px;
+			background-image: 
+			url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			background-position: -335px -296px;
+		}
+		.issue-box .left-box{
+			float: left;
+		}
+		.issue-box .right-box{
+			float: right;
+		}
+		.issue-box .link-news{
+			margin-right: 7px;
+			font-size: 13px;
+			color: #000;
+			font-weight: bold;
+			line-height: 24px;
+			float: left;
+		}
+		.issue-box .link-news::after{
+			display: inline-block;
+			width: 6px;
+			height: 10px;
+			background-image: 
+			url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			content: '';
+			background-position: -262px -125px;
+			margin: 7px 0 0 6px;
+		}
+		.rolling-news{
+			height: 24px;
+			width: 310px;
+			float: left;
+			overflow: hidden;
+			background-color: yellow;
+		}
+		.issue-box .link-navernews,
+		.issue-box .link-enter,
+		.issue-box .link-sports,
+		.issue-box .link-economic{
+			float: left;
+			height: 24px;
+			font-size: 13px;
+			line-height: 24px;
+			color: #202020;
+			font-weight: bold;
+		}
+		.issue-box .link-navernews{
+			color: #3565c9;
+		}
+		.issue-box .link-enter,
+		.issue-box .link-sports,
+		.issue-box .link-economic{
+			margin: 0 4px 0 7px;
+		}
+		.issue-box .link-navernews::after{
+			width: 3px;
+			height: 3px;
+			display: inline-block;
+			content: '';
+			border-radius: 50%;
+			vertical-align: 3px;
+			margin-left: 8px;
+			background-color: #c8ccd1;
+		}
+		.stand-box{
+			height: 18px;
+			padding: 22px 0 16px;
+			line-height: 18px;
+			font-size: 14px;
+		}
+		.stand-box .left-box{
+			float: left;
+			height: 100%;
+		}
+		.stand-box .right-box{
+			float: right;
+			height: 100%;
+		}
+		.stand-box .news-stand-link{
+			font-weight: bold;
+			color: #000;
+			float: left;
+		}
+		.stand-box .news-stand-link::before{
+			content: '';
+			display: inline-block;
+			width: 27px;
+			height: 24px;
+			background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			background-position: -228px -296px;
+			margin: -6px 1px 0 0;
+			vertical-align: top;
+		}
+		.stand-box .news-stand-link::after{
+			content: '';
+			display: inline-block;
+			width: 6px;
+			height: 10px;
+			background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			background-position: -262px -125px;
+			margin: 7px 0 0 6px;
+			vertical-align: top;
+		}
+		.stand-box .sub-press-link{
+			color: #505050;
+			margin-left: 10px;
+			float: left;
+		}
+		.stand-box .all-press-link{
+			color: #000;
+			font-weight: bold;
+			float: left;
+		}
+		.stand-box .all-press-link::before{
+			width: 4px;
+			height: 4px;
+			border-radius: 50%;
+			display: inline-block;
+			content: '';
+			background-color: #c7ccd1;
+			margin: 0 8px 0 4px;
+			vertical-align: 3px;
+		}
+		.stand-box .list-btn,
+		.stand-box .press-btn,
+		.stand-box .setting-link
+		{
+			float: left;
+			padding: 0 9px;
+		}
+		.stand-box .list-btn>.i-list{
+			display: inline-block;
+			width: 14px;
+			height: 13px;
+			background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			background-position: -420px -379px;
+			vertical-align: top;
+			opacity: .7;
+		}
+		.stand-box .setting-link>.i-setting{
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			background-position: -420px -276px;
+			vertical-align: top;
+			opacity: .7;
+			margin: -1px 0 1px;
+		}
+		.stand-box .press-btn>.i-press{
+			display: inline-block;
+			width: 13px;
+			height: 13px;
+			background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_main_1f05c0.png);
+			background-size: 440px 410px;
+			background-position: -153px -327px;
+			vertical-align: top;
+		}
+		.stand-list-box{
+			height: 260px;
+			position: relative;
+		}
+		.stand-list-box .stand-col-box{
+			width: calc(100% / 6);
+			float: left;
+			padding: 23px 0 22px;
+			text-align: center;
+			height: 20px;
+			position: relative;
+		}
+		
+		.stand-list-box .stand-col-box>img{
+			height: 20px;
+		}
+		.bar-list-box{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			border: 1px solid #dae1e6;
+			z-index: -1;
+		}
+		.bar-list-box>div{
+			position: absolute;
+			background-color: #e4e8eb;
+		}
+		.bar-list-box>.bar-row1{
+			height: 1px;
+			left: 0;
+			right: 0;
+			top: 65px;
+		}
+		.bar-list-box>.bar-row2{
+			height: 1px;
+			left: 0;
+			right: 0;
+			top: 130px;
+		}
+		.bar-list-box>.bar-row3{
+			height: 1px;
+			left: 0;
+			right: 0;
+			top: 195px;
+		}
+		.bar-list-box>.bar-col1{
+			width: 1px;
+			top: 0;
+			bottom: 0;
+			left: 124px;
+		}
+		.bar-list-box>.bar-col2{
+			width: 1px;
+			top: 0;
+			bottom: 0;
+			left: 248px;
+		}
+		.bar-list-box>.bar-col3{
+			width: 1px;
+			top: 0;
+			bottom: 0;
+			left: 372px;
+		}
+		.bar-list-box>.bar-col4{
+			width: 1px;
+			top: 0;
+			bottom: 0;
+			left: 497px;
+		}
+		.bar-list-box>.bar-col5{
+			width: 1px;
+			top: 0;
+			bottom: 0;
+			left: 622px;
+		}
+		.stand-list-box .thumb-box{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background-color:#f7f9fa;
+			/* background-color: yellow; */
+			display: none;
+			padding: 19px 0 18px;
+		}
+		.stand-list-box .stand-col-box:hover .thumb-box{
+			display: block;
+		}
+		.stand-list-box .thumb-box>.btn-sub,
+		.stand-list-box .thumb-box>.btn-news{
+			display: inline-block;
+			font-size: 12px;
+			line-height: 16px;
+			padding: 7px 8px 5px;
+			border: 1px solid #dae1e6;
+			/* border: 1px solid red; */
+			background-color: #fff;
+			color: #505050;
+		}
+		.stand-list-box .thumb-box>.btn-news{
+			margin-left: -1px;
+		}
+		.stand-list-box .thumb-box>a:hover{
+			border-color: #bec8d8;
+			/* border-color: blue; */
+			position: relative;
+		}
+		.shop-box{
+			margin-top: 15px;
+		}
+		.shop-box .shop-title{
+			padding: 12px 0 13px;
+			line-height: 17px;
+		}
+		.shop-box .shop-title>a{
+			float: left;
+			margin: 2px 0 0 1px;
+			color: #000;
+			line-height: 17px;
+			font-size: 13px;
+			font-weight: bold;
+		}
+		.shop-box .shop-title>a::before{
+			display: inline-block;
+			content: '';
+			width: 15px;
+			height: 15px;
+			margin-right: 4px;
+			vertical-align: -3px;
+			background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_shop_bffdc9.png);
+			background-size: 107px 78px;
+			background-position: -26px -54px;
+		}
+		.shop-box .shop-title>a::after{
+			display: inline-block;
+			width: 5px;
+			height: 9px;
+			background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_shop_bffdc9.png);
+			background-size: 107px 78px;
+			background-position: -43px -54px;
+			margin-left: 7px;
+			content: '';
+			vertical-align: 0px;
+		}
+		.shop-box .shop-title::after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.shop-box .shop-title>ul{
+			float: right;
+			color: #000;
+			font-weight: 700;
+			list-style: none;
+			font-size: 13px;
+			line-height: 17px;
+		}
+		.shop-box .shop-title>ul>li{
+			float: left;
+			margin-left: 15px;
+		}
+		.shop-box .shop-title>ul>li>a{
+			display: block;
+			padding: 0 1px;
+			border-bottom: 2px solid transparent;
+			color: #202020;
+		}
+		.shop-box .shop-title>ul>li>a.select{
+			border-color: #19ce60;
+			color: #03c75a;
+		}
+		.add2{
+			height: 200px;
+			background-color: yellow;
+		}
+		.shop-box .shop-list{
+			overflow: hidden;
+			height: 1492px;
+			border : 1px solid #e4e8eb;
+		}
+		.shop-box .shop-list .shop-list-header{
+			overflow: hidden;
+			padding: 12px 9px 11px 17px;
+			background-color: #f7f8fa;
+			border-bottom: 1px solid #dae1e6;
+			font-size: 12px;
+			line-height: 23px;
+			color: #404040;
+		}
+		.after::after{
+			content: '';
+			clear: both;
+			display: block;
+		}
+		.shop-box .shop-list .shop-list-header li{
+			float: left;;
+		}
+		.shop-box .shop-list .shop-list-header li .point{
+			margin: 10px 8px 0;
+			background-color: #c9cccf;
+			display: inline-block;
+			width: 3px;
+			height: 3px;
+			border-radius: 50%;
+			vertical-align: top;
+		}
+		.shop-box .shop-list .shop-list-header li>a{
+			color: #404040;
+		}
+		.shop-box .shop-list .shop-list-header li>a.bold{
+			color: #202020;
+			font-weight: bold;
+		}
+        .shop-box .shop-list-body{
+            padding: 0 8 22px;
+        }
+        .shop-box .shop-list-body .list-header-box{
+            height: 55px;
+            float: right;
+            font-size: 12px;
+            padding-top: 13px;
+            box-sizing: border-box;
+        }
+        .shop-box .shop-list-body .list-header-box .num-box,
+        .shop-box .shop-list-body .list-footer-box .num-box{
+            color: gray;
+            line-height: 29px;
+            float: left;
+            font-size: 12px;
+        }
+        .shop-box .shop-list-body .list-footer-box .num-box{
+            float: none;
+            display: inline-block;
+        }
+        .shop-box .shop-list-body .list-header-box .current,
+        .shop-box .shop-list-body .list-footer-box .current,
+        .shop-box .shop-list .group_event .shop-control .num-box .current{
+            margin-right: 4px;
+            color: #202020;
+            font-weight: bold;
+            /* line-height: 16px; */
+        }
+        .shop-box .shop-list-body .list-header-box .btn-box{
+            float: left;
+            margin-left: 7px;
+        }
+        .shop-box .shop-list-body .list-header-box .btn-box .prev-btn,
+        .shop-box .shop-list-body .list-header-box .btn-box .next-btn,
+        .shop-box .shop-list-body .list-footer-box .next-btn,
+        .shop-box .shop-list-body .list-footer-box .prev-btn,
+        .shop-box .shop-list .shop-control .next-btn,
+        .shop-box .shop-list .shop-control .prev-btn
+        {
+            float: left;
+            margin-left: 7px;
+            background: #fff;
+            border: 1px solid #dae1e6;
+        }
+        .shop-box .shop-list-body .list-footer-box .next-btn,
+        .shop-box .shop-list-body .list-footer-box .prev-btn{
+            float: none;
+        }
+        .shop-box .shop-list-body .list-footer-box a{
+            display: inline-block;
+        }
+        .shop-box .shop-list-body .list-header-box .btn-box .prev-btn::before,
+        .shop-box .shop-list-body .list-header-box .btn-box .next-btn::before,
+        .shop-box .shop-list-body .list-footer-box .next-btn::before,
+        .shop-box .shop-list-body .list-footer-box .prev-btn::before,
+        .shop-box .shop-list .shop_control .next-btn::before,
+        .shop-box .shop-list .shop_control .prev-btn::before
+        {
+            /* btn 박스 안에 아무것도 없기 때문에 before after 상관없음 */
+            display: inline-block;
+            width: 5px;
+            height: 9px;
+            margin: 9px 12px 9px 10px;
+            vertical-align: top;
+            content: '';
+            background-image: url(https://s.pstatic.net/static/www/img/uit/2020/sp_shop_bffdc9.png);
+            background-size: 107px 78px;
+            background-position: -71px -54px;
+        }
+        .shop-box .shop-list-body .list-header-box .btn-box .next-btn{
+            margin-left: -1px;
+        }
+        .shop-box .shop-list-body .list-header-box .btn-box .next-btn::before,
+        .shop-box .shop-list-body .list-footer-box .next-btn::before,
+        .shop-box .shop-list .shop-control .next-btn::before
+        {
+            background-position: -57px -54px;
+            /* 테두리 얇게 보이기 위해서 앞으로 한칸 땡김 */
+        }
+        .shop-box .shop-list-body .list-body-box{
+            float: left;
+            width: 100%;
+        }
+        .shop-box .shop-list-body .list-body-box .goods_item{
+            margin-top: 10px;
+            float: left;
+            width: 33.33%;
+            font-size: 12px;
+            line-height: 16px;
+
+        }
+        .shop-box .shop-list-body .list-body-box .goods_item .thumb_box{
+            height: 146px;
+            overflow: hidden;
+            width: 107px;
+        }
+        .shop-box .shop-list-body .list-body-box .goods_item:hover .thumb_box img{
+            transform: scale(1.05);
+            /* text-decoration: underline; 작용을 안한다. 굿즈 아이템에 올릴경우 img를 변화시킨다는 의미이기 때문에! */
+        }
+        .shop-box .shop-list-body .list-body-box .goods_item .thumb_box img{
+            transition: transform 0.3s;
+        }
+        .shop-box .shop-list-body .list-body-box .goods_item .thumb_title span{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;  
+            display: block;
+            float: left;
+            text-align: center;
+            color: #202020;
+        }
+        .shop-box .shop-list-body .list-body-box .goods_item:hover .thumb_title span{
+            text-decoration: underline;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .shop-box .shop-list-body .list-body-box .goods_item a{
+            font-size: 5px;
+        }
+        .shop-box .shop-list-body .list-footer-box{
+            margin-top: 18px;
+            text-align: center;
+            float: left;
+            width: 100%;
+        }
+        .shop-box .shop-list-body .list-footer-box .num-box{
+			float: none;
+			display: inline-block;
+			width: 61px;
+		}
+        .shop-box .shop-list .shop_control{
+            float: right;
+        }
+        .shop-box .shop-list .shop_control .num-box{
+            float: left;
+            display: inline-block;
+            line-height: 16px;
+            color: grey;
+        }
+        .shop-box .shop-list .group_event{
+            margin: 0 8px;
+            padding: 19px 0 17px;
+            border-top: 1px solid #e4e8eb;
+
+        }
+        .shop-box .shop-list .group_event .title{
+            font-size: 13px;
+            line-height: 16px;
+        }
+        .group_event .shop_title {
+            position: relative;
+            padding-left: 5px;
+            width: 100%;
+        }
+        .shop-box .shop-list .list_event .event_area {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            color: #202020;
+        }
+        .list_event .event_area:before {
+            display: inline-block;
+            border-radius: 50%;
+            vertical-align: top;
+            content: '';
+            margin-right: 8px;
+            vertical-align: 2px;
+            float: left;
+        }
+        .event_item .title{
+            display: block;
+        }
+	</style>
+	<script src="https://kit.fontawesome.com/b1e3c8f87d.js" 
+		crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="header">
+		<div class="container"></div>
+	</div>
+	<div class="menu">
+		<div class="container"></div>
+	</div>
+	<div class="contents">
+		<div class="container">
+			<div class="left">
+				<div class="add box">
+					<a target="_blank" href="https://nintendo.co.kr/software/switch/axeab/?src=image&kw=00007D">
+						<img src="https://ssl.pstatic.net/tveta/libs/1306/1306863/74dbf4fd71ff20a7ca29_20201124142140090.jpg" alt="광고">
+					</a>
+				</div>
+				<div class="issue-box">
+					<div class="left-box">
+						<a href="#" class="link-news">연합뉴스</a>
+						<div class="rolling-news"></div>
+					</div>
+					<div class="right-box">
+						<a href="#" class="link-navernews">네이버 뉴스</a>
+						<a href="#" class="link-enter">연애</a>
+						<a href="#" class="link-sports">스포츠</a>
+						<a href="#" class="link-economic">경제</a>
+					</div>
+				</div>
+				<div class="stand-box">
+					<div class="left-box">
+						<a href="#" class="news-stand-link">뉴스스탠드</a>
+						<a href="#" class="sub-press-link">구독한 언론사</a>
+						<a href="#" class="all-press-link">전체언론사</a>
+					</div>
+					<div class="right-box">
+						<a href="#" class="list-btn"><i class="i-list"></i></a>
+						<a href="#" class="press-btn"><i class="i-press"></i></a>
+						<a href="#" class="setting-link"><i class="i-setting"></i></a>
+					</div>
+				</div>
+				<div class="stand-list-box">
+					<div class="stand-row-box">
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/up/2020/0610/nsd151458769.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+					</div>
+					<div class="stand-row-box">
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/up/2020/0610/nsd151458769.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+					</div>
+					<div class="stand-row-box">
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/up/2020/0610/nsd151458769.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+					</div>
+					<div class="stand-row-box">
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/up/2020/0610/nsd151458769.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+						<div class="stand-col-box">
+							<img src="https://s.pstatic.net/static/newsstand/2020/logo/light/0604/330.png" alt="">
+							<div class="thumb-box">
+								<a href="#" class="btn-sub">구독</a><a href="#" class="btn-news">기사보기</a>
+							</div>
+						</div>
+					</div>
+					<div class="bar-list-box">
+						<div class="bar-row1"></div>
+						<div class="bar-row2"></div>
+						<div class="bar-row3"></div>
+						<div class="bar-col1"></div>
+						<div class="bar-col2"></div>
+						<div class="bar-col3"></div>
+						<div class="bar-col4"></div>
+						<div class="bar-col5"></div>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div class="login-box box">
+					<div class="in-box">
+						<p class="title">네이버를 더 안전하고 편리하게 이용하세요</p>
+						<a class="login-btn" href="https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com">
+							NAVER 로그인
+						</a>
+						<div class="sub-box">
+							<div class="sub-left">
+								<a href="https://nid.naver.com/user2/help/idInquiry.nhn?menu=idinquiry" class="find-id"><i class="fas fa-lock"></i> 아이디</a>
+								<span class="point"></span>
+								<a href="https://nid.naver.com/user2/help/pwInquiry.nhn?menu=pwinquiry" class="find-pw">비밀번호찾기</a>
+							</div>
+							<div class="sub-right">
+								<a href="https://nid.naver.com/user2/V2Join.nhn?m=agree&lang=ko_KR&cpno=" class="signup"><i class="fas fa-user"></i> 회원가입</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="timesquare-box box">
+					<div class="timesquare-card"></div>
+					<div class="btn-box">
+						<a href="#" class="prev"></a>
+						<a href="#" class="next"></a>
+					</div>
+				</div>
+				<div class="add2"></div>
+				<div class="shop-box">
+					<div class="shop-header">
+						<div class="shop-title">
+							<a href="#">트렌드쇼핑</a>
+							<ul>
+								<li><a href="#" class="select">상품</a></li>
+								<li><a href="#">쇼핑몰</a></li>
+								<li><a href="#">MEN</a></li>
+							</ul>
+						</div>
+						<div class="shop-list">
+							<div class="shop-list-header">
+								<ul class="row1 after">
+									<li><a href="#">G마켓</a><span class="point"></span></li>
+									<li><a href="#" class="bold">옥션</a><span class="point"></span></li>
+									<li><a href="#">11번가</a><span class="point"></span></li>
+									<li><a href="#">위메프</a><span class="point"></span></li>
+									<li><a href="#" class="bold">이마트몰</a><span class="point"></span></li>
+									<li><a href="#">올리브영</a></li>
+								</ul>
+								<ul class="row2 after">
+									<li><a href="#" class="bold">티몬</a><span class="point"></span></li>
+									<li><a href="#">홈플러스</a><span class="point"></span></li>
+									<li><a href="#" class="bold">GS샵</a><span class="point"></span></li>
+									<li><a href="#">롯데i몰</a><span class="point"></span></li>
+									<li><a href="#">신세계몰</a><span class="point"></span></li>
+									<li><a href="#">CJmall</a></li>
+								</ul>
+							</div>
+							<div class="shop-list-body after">
+                                <div class="list-header-box">
+                                    <div class="list-control-box">
+                                        <div class="num-box">
+                                            <span class="current">1</span>/19
+                                        </div>
+                                        <div class="btn-box">
+                                            <a href="#" class="prev-btn"></a>
+                                            <a href="#" class="next-btn"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-body-box">
+                                    <ul class="list_goods">
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="goods_item">
+                                            <a href="https://adcr.shopping.naver.com/adcr.nhn?x=RAnqDHubj7WjMtNrxtLWgP%2F%2F%2Fw%3D%3Ds%2BbkGxKZDmwbBbhDS3RANKHjV69kIshNuFnFl119yOxzTMQNMCSvmUdvlKqXHlKGTLpw2SBGJ9ACmUyiVwiXaIBkXIvPdAE8xE7wUZCeFF7QJJGYi6530ziTKt3PXELhciLcd%2FMrI%2BODXYnLC6E21kNFUAR%2Fd1vMk5pSJh%2BcFqoLR%2BG5wl1cBnGBegPQjlc9cK6H4ulrV1ZP6FDjvFcM9C2Ie6ZfQ7OPRZI4Kw5joxd6lK5HfZJz%2FD%2BOQW%2BkvJJBZEGsgbaDVCqfcqtSxpTmgb8K77CbtzagrOqVNFeTBN3vvXefenXKcmJv2ffqqnnwEUtDJRPWYadGXXsZSxq0ev6xGlHF9I4E3irLR6KPInsC%2FhdeJFGsBR5uKbqkskNh9tCr0oVvHobWMmpN3BhDTqbeO1d8yA2%2Bq1DmLiFHkzeN959RsAZFfYLw7a62952Zv&y=M2LdD92E22L2oqqIZIZdIf%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jwQuDl9l0%2B2gOM2K615flDnww4yDhWM5U5M5EV6iLkjgXo19UDBIuBuAETXTI55LxD%2Bcds9m20JEP7DuKa5rAO%2BE1NOZZY182M6E8H93Xj%2BrOaFJzeRUyttxnqeCtE9n%2BoJHFfOhOLIeIyKrqeQrgktdaswQN5O5o74OS8HM%2FO4f%2BNY7lNaYfDkKZZkQjavgNj2c2iljnPS65DdHpbVazD7NWW%2B8RohsEk5vHMJaMWT0ZNS2Vf3oWERF43z0b%2BlSF0CA%2Fh4yv%2F8Y0FOZxmkpmE9t9k97btPLFxLLSMvMwEWegwcL%2Fei8u5FiI295l4EeaxuXcuFv9pJqkJ5pTrsRCLFREKgIwfQNTACGPKxEzeeXfUNuRApWPgo1OXMv8h8UNCyzfTv4BAG%2FE8894LF8W0vfQTqdCK9C0bcqwJc%2FKjfXRAWVdHVf57GwE3voBMxOR0Aucdd35hRxW8Cs3CCmI4dQgIQ0s0D%2BHfdSqGKkCBHdu%2B%2BfmFw985mAQEjK4Sgpizca91lkCb%2B5LIhSx4WPNtY8Z2g9WsV86NMq%2Fjqa5h8FRf5CUq%2BdW62GWL3dx5pq6jG4Pm7b%2BqCbYjhAYUrPaqTiUz333%2FqgOAqDS3Cj3%2Box4B52U5FPMf7E2zbbxAirnWP9MgbgFmCAikAZEXwkZI3i7vdv6f22CNYBwvIavDrbov%2BQrNFmktemgJFn%2BOdlwLgTdWfw2DKcoO22QGizUGAlddWpY73y%2FhxGUEeAgNXA%3D%3D">
+                                                <div class="thumb_box">
+                                                    <img height="146" src="https://s.pstatic.net/shopping.phinf/20201130_15/6f707b1f-3d3c-429c-9a69-ad7a90e9e506.jpg?type=f214_292" alt="아동 뽀글이 점퍼">
+                                                    <span class="thumb_bd"></span>          
+                                                </div>
+                                                <p class="thumb_title">
+                                                    <span class="title bold">아동 뽀글이 점퍼</span>
+                                                    <span class="title">최대 84% 1만원대</span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                    
+                                    </ul>
+                                </div>
+                                <div class="list-footer-box box">
+                                    <a href="#" class="prev-btn"></a>
+                                        <div class="num-box">
+                                            <span class="current">1</span>/19
+                                        </div>
+                                            <a href="#" class="next-btn">
+
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="group_event">
+                                <div class="shop_title">
+                                    <strong class="title">반갑다! 쇼핑뉴스</strong>
+                                    <div class="shop_control">
+                                        <a href="#" class="prev-btn"></a>
+                                        <div class="num-box">
+                                            <span class="current">1</span>/4
+                                        </div>
+                                        <a href="#" class="next-btn"></a>
+                                    </div>
+                                </div>
+                                    <li class="event_item">
+                                        <a href="https://adcr.shopping.naver.com/adcr.nhn?x=duIRfCJaIytyI5A7SpaweP%2F%2F%2Fw%3D%3DslBp1l6%2FYJw4z5%2Febfo51oB6mIgs5aCbo4X8lcVVMqx0pVAYlwzCa6xBqulDRHANOz33gmRWR2zaJldDr5%2Fuw03VVvVfMqaMPoh1quxqhy3R%2ByxR1ysgCqBavE%2FJUI0ttpyNbkIyDCLxBrlawPE0zimYoprH0TNMAejrzdb3J%2BOAsPDWzGEEYsbdq8L%2FZRcAdC7a6EVh1u%2FIQs1rar6pPL2sa1AtHClFSrDC%2BF8JDVSfhYSTL9x%2Bs2jTfY4QXesr7R6O%2FIHoSNqM2lkkumscpq6leco0elZgwJyApJtN8MXl1Vb1XzKmjD6Idarsaoct0HcJFN57VleNhbNJxqQeigNJkmC51FVniwCdVSyQApooKFnTkLIGos9uXDLEpd4LwTuaFbvHCeSGEhNfKrKQDOV346Ut3Dr2zBFHCrA6jniA%3D&amp;y=MQ77mLN7RN2zr%2Fh6k4VhYv%2F%2F%2Fw%3D%3Dsfu%2FtfZ7ZTA1V4a0bati0cIdt78nepzX5gk4pdNC2Y8jHU0woiZu3AzCzlS12cRZcHPfvp8xcAKpkjTuSyl6nNpZHPLJmWUVMdd34BR%2Bx7UZaRtIGehgknhm2YOyrkooBPr1hIBuOA64WqvbKfs6WV84cZsQOe%2FqIbpt7MPVyWcoqXe%2BtgdzsKPxiMGZFHX%2FSh6dTNQB%2B55mOQJHLZRwBAN0jmvtVMfBKrdPHWV%2FwyysGZT5zi21mMnYE3%2FBACexG%2Fg4jzhD%2BcyV0wJB9wFt85imczkbXzNQpV%2Bd%2BAjLhuH%2FbOAb2zIsjegHo9wy3RR2wHAHlANAsMIyezG1MuOnu15AbwbrpAOCPaS84SQeYT2i%2B1POHd%2F%2FaE8A5AetNteRIBnnK3wLSKoa1fFKwKCR82O3bp5QfHRdudPih0kqRqEqvCeikXeqEmZKCz2adHfF7wjBtNoYVFQPTreW3%2BJSGtluPjpAzSbcM%2FhWcZC3LZCLKHFGGYQmXt7mY%2BnCxpnmQB9xFrWO31PcxvZVdZShZbkYfUllw2yvGuAi6Pm%2FzDGAWwUbGKdtlCRdIRJUYWfpGHrEK1HVpEKctkWw5HkO9xrOkacYDcA4azoxRifC2bWKlaXZgtxB%2FZF%2B8SkXztjP0" class="event_area" target="_blank">
+                                            <em class="title">써니러브</em>
+                                            <span class="dsc">미시룩 최대30%↓</span>
+                                            <span class="dsc">여유핏빅사이즈</span>
+                                        </a>
+                                    </li>
+
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>
