@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <div class="btn1">버튼1</div>
+    <div class="btn2">버튼2</div>
+    <script>
+        //javascript 이벤트 처리 방식
+        window.onload = function(){
+            // elements 배열로 가져와서 [0]
+            // 뭘 가져오냐에 따라서 메소드가 바뀜 불편
+            var btn1 = document.getElementsByClassName('btn1')[0];
+            btn1.onclick = function(){
+                alert('버튼1 클릭');
+            }
+        }
+        //jquery 이벤트 처리 방식, javascript로 만들어 놓은 라이브러리
+        $(function(){
+            $('.btn2').click(function(){
+                alert('버튼2 클릭');
+            })
+        })
+    </script>
+</body>
+</html>

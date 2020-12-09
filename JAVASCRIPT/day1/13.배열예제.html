@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열예제</title>
+</head>
+<body>
+    <script>
+        /*
+        입력창을 통해 정수 1개를 입력받는다.
+        입력 한 수 만큼 입력창을 통해 값을 입력받아 배열에 저장한 후 출력하는 예제
+        예: 처음 입력한 숫자가 3이면, 입력창을  3번 열어서 값을 입력받고 배열에 저장한다.
+        배열에는 3개의 값이 저장될 것이고 이를 출력하면 된다.
+        */
+        
+        var num1 = prompt('몇개의 숫자를 입력하시겠습니까.');
+        var arr = [];
+        if(!isNaN(num1)){
+        for(let i = 1; i<=num1; i++){
+            let num2 = prompt('배열에 넣을 숫자를 입력하세요.');
+            arr.push(num2);
+            }
+            alert(arr);
+        }else{
+            alert('정수가 아닙니다.');
+        }
+        // for(let i = 0; i<cnt; i++){
+        //     var data = prompt('값'+(i+1),'');
+        //     arr.push(data);
+        // }
+        console.log(arr);
+        // while(num1){
+        //     num1+=1;
+        //     let num2 = prompt('배열에 넣을 숫자를 입력하세요.');
+        //     arr = push(num2);
+        // }
+        // console.log(arr);
+    </script>
+</body>
+</html>
