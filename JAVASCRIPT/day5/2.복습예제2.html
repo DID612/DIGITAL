@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery.js"></script>
+    <script>
+        /* 추가 버튼을 만들고, 추가 버튼을 클릭하면 input태그가 추가되도록 작성하세요.*/
+        $(function(){
+                $('.b1').click(function(){
+                    // console.log('123'); 이벤트 동작 우선 체크
+                    var str = '<input type="text"><br>'
+                    $('.input-b1').append(str); //왜 안될까. 댓네;
+                    // $('input').after(str);
+                    // after나 before 추가할때 잘못 선택하면 여러개가 한번에 추가됨.
+                })
+        })
+    </script>
+</head>
+<body>
+    <button class="b1">버튼1</button>
+    <div class="input-b1"></div>
+    <input type="text"><br>
+</body>
+</html>
