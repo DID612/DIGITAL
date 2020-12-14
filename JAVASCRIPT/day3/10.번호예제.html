@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>번호예제</title>
+    <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        /*
+        - 이전 버튼을 클릭하면 버튼이 감소, 1에서 감소를 누르면 19
+        - 이후 버튼을 클릭하면 버튼이 증가, 19에서 증가를 누르면 1
+        */
+        $(function(){
+            var page = 1;
+            var min = 1;
+            var max = 19;
+                $('.btn-after').click(function(){
+                    if(page<max){
+                        $('.current-page').text(++page);
+                    }else{
+                            $('.current-page').text(page=1);
+                    }
+                })
+                    
+                $('.btn-prev').click(function(){
+                    if(page>min){
+                        $('.current-page').text(--page);
+                    }else{
+                        $('.current-page').text(page=19);
+                    }
+                })
+        })
+        // 함수 만들시 이벤트 $ 랑은 따로
+        // function page(page){
+
+        // }
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span class="current-page">1</span>/19
+        <button class="btn-prev">이전</button>
+        <button class="btn-after">이후</button>
+    </div>
+</body>
+</html>

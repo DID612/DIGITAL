@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        /* 
+        -input 태그에 아이디를 입력받아 올바른 아이디인지 체크하여 올바르면
+        올바른 아이디라고, 아니면 올바르지 않은 아이디라고 출력하세요.
+         - 아이디는 8~13자
+         - 아이디 첫글자는 영문자
+         - 아이디는 영문 대소문자와 숫자만 가능
+        */
+        /*
+        -비밀번호와 비밀번호 확인을 입력하여 입력한 두 값이 같은지 다른지를
+        버튼을 클릭하면 확인하도록 작성하세요.
+        */
+        $(function(){
+            var idReg=/^[a-zA-z][a-zA-Z0-9]{7,12}$/;
+            // var pReg2 = /^(02)|(043)-\d{3,4}-\d{4}$/;
+            $('.btn').click(function(){
+                var id = $('.input').val();
+                console.log('input val : ' + id);
+                if(idReg.test(id)){
+                    alert('올바른 아이디');
+                }else{
+                    alert('올바르지 않은 아이디');
+                }
+                // console.log(idreg.test(id));
+            })
+            $('.ps_btn').click(function(){
+                var password = $('#pw').val();
+                var password_check = $('#pw2').val();
+                console.log('비밀번호 val : ' + password);
+                console.log('비밀번호 확인 val : ' + password_check);
+                if(password==password_check){
+                    alert('비밀번호 확인 완료');
+                }else{
+                    alert('비밀번호 확인 실패');
+                }
+                // console.log(idreg.test(id));
+            })
+        })
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input type="text" class="input">
+    <button class="btn">아이디 확인</button>
+    <br>
+    <input type="password" name="pw" id="pw">
+    <input type="password" name="pw2" id="pw2">
+    <button class="ps_btn">비밀번호체크</button>
+</body>
+</html>

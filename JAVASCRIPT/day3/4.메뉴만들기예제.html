@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="//code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        $(function(){
+
+        })
+    </script>
+    <style>
+        .box{
+            width: 700px;
+            height: 700px;
+            border: 2px solid black;
+            box-sizing: content-box;
+        }
+        .menu_bar{
+            position: relative;
+            width: 700px;
+            height: 80px;
+            border: 2px solid red;
+            box-sizing: content-box;
+            left: -1.6px;
+        }
+        .menu{
+            float: left;
+            width: 233px;
+            height: 400px;
+            border: 2px solid blue;
+            box-sizing: border-box;
+            font-size: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .box .menu_bar .menu .mini_menu{
+            position: relative;
+            height: 80px;
+            top: 25px;
+            color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="menu_bar">
+            <div class="menu">
+                <div class="mini_menu">메뉴1</div>
+                <div class="mini_menu">메뉴1-1</div>
+                <div class="mini_menu">메뉴1-2</div>
+            </div>
+            <div class="menu"></div>
+            <div class="menu"></div>
+        </div>
+    </div>
+</body>
+</html>
