@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/jquery.js"></script>
+    <script>
+        /*
+        -childern(): 자식요소를 선택
+        -childern('선택자'): 자식요소중 선택자와 일치하는 자식을 선택
+        -find('선택자') : 자손 중에서 선택자와 일치하는 자손을 선택
+        */
+        $(function(){
+            $('.container').children().css('border-color','red');
+            $('.container').children('.right').css('border-color','blue');
+            $('.container').find('.box').css('border-color','green');
+            $('.container').find('.right .box')
+            .css('background-color','rgb(255,255,0)');
+        })
+        
+
+    </script>
+    <style>
+        div{
+            padding: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        컨테이너
+        <div class="wrap">
+            래퍼
+            <div class="inner-box">
+                이너박스
+                <div class="box">
+                    박스
+                </div>
+            </div>
+        </div>
+        <div class="wrap right">
+            래퍼
+            <div class="inner-box">
+                이너박스
+                <div class="box">
+                    박스
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
