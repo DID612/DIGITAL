@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $(function(){
+        $('.bounce-btn').click(function(){
+            $('.head').removeClass('animate__backInDown');
+            $('.head').toggleClass('animate__bounce');
+        })
+
+        $('.backInDown-btn').click(function(){
+            $('.head').removeClass('animate__bounce');
+            $('.head').toggleClass('animate__backInDown');
+        })
+        $('.head').on('animationend',function(){
+            $('.head').attr('class','head');
+        })
+    })
+    </script>
+  <style>
+      .head{
+          margin-top: 100px;
+          text-align: center;
+      }
+  </style>
+</head>
+<body>
+        <h1 class="head animate__animated animate__infinite">Hello</h1>
+    <button class="bounce-btn">bounce</button>
+    <button class="backInDown-btn">backInDown</button>
+</body>
+</html>

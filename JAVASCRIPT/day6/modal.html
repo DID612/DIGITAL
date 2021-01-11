@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모달 예제</title>
+    <script src="../jquery.js"></script>
+    <script>
+        $(function(){
+            $('.modalEx').click(function(){
+                modalFunction();
+            })
+            $('.close').click(function(){
+                modalFunction();
+            })
+        })
+        function modalFunction(){
+            if(!$('.bg-box').hasClass('modalClicked')){
+                    $('.bg-box').css('background-color', 'gray');
+                    $('.bg-box').css('opacity', '0.5');
+                    $('.box').show();
+                    $('.bg-box').addClass('modalClicked')
+                }else{
+                    $('.box').hide();
+                    $('.bg-box').css('background-color', '');
+                    $('.bg-box').css('opacity', '1');
+                    $('.bg-box').removeClass('modalClicked');
+                }  
+        }
+    </script>
+    <style>
+        .modalEx{
+            width: 50px;
+            height: 50px;
+            background-color: tan;
+        }
+        .bg-box{position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+        }
+        .box{
+            position: fixed;
+            /* position: relative; */
+            width: 500px;
+            height: 200px;
+            background-color: white;
+            border-radius: 10px;
+            font-size: 20px;
+            display: none;
+        }
+        .header{
+            width: 500px;
+            height: 50px;
+            text-align: center;
+        }
+        .close{
+            cursor: pointer;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            right: 0px;
+            bottom: 0px;
+            margin: 20px 30px 20px 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-box"></div>
+    <a href="#"><div class="modalEx">Open modal</div></a>
+
+    <div class="box">
+        <div class="header">Modal healing</div>
+        <div class="middle">Modal body..</div>
+        <div class="close">close</div>
+    </div>
+</body>
+</html>
