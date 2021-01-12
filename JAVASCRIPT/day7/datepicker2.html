@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이트 피커2</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script>
+        $(function(){
+            /*
+            dateFormat: 날짜 선택시 인풋창에 들어가는 날짜 형태를  설정
+            dayNamesMin/dayNames/dayNamesShort : 요일명을 설정
+            monthNames/monthNamesShort : 월 명칭을 설정
+            minDate : 선택할 수 있는 최소 날짜를 지정
+            maxDate : 선택할 수 있는 최대 날짜를 지정
+            */
+            var today = '2020-12-22';
+            
+            $('#start').datepicker({
+                dateFormat : 'yy-mm-dd',
+                dayNamesMin : ['일','월','화','수','목','금','토'],
+                monthNamesShort : ['1월', '2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                monthNames : ['1월', '2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                minDate : today
+            });
+
+            $('#end').datepicker({
+                    dateFormat : 'yy-mm-dd',
+                    dayNamesMin : ['일','월','화','수','목','금','토'],
+                    monthNamesShort : ['1월', '2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                    monthNames : ['1월', '2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                    minDate : today
+                })
+            // $('#end').click(function(){
+            //     $('#end').datepicker({
+            //     dateFormat : 'yy-mm-dd',
+            //     dayNamesMin : ['일','월','화','수','목','금','토'],
+            //     monthNamesShort : ['1월', '2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            //     monthNames : ['1월', '2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            //     prevText : '이전 달',
+            //     nextText : '다음 달',
+            //     minDate : val
+            //     });
+            // })
+
+            $('#start').change(function(){
+                var val = $(this).val();
+                if(val ==''){
+                    val = today;
+                }
+                $('#end').datepicker('option', 'minDate', val);
+                
+            })
+            $('#end').focus(function(){
+                var val = $('#start').val();
+                console.log(val);
+                if(val.trim() == ''){
+                    $(this).val('');
+                    var cnt = 0;
+                    setTimeout(function(){ $('#start').focus(); }, 10);
+                    alert('시작 날짜를 먼저 입력해주세요.'+(cnt++));
+                }
+            })
+            // $('선택자').이벤명(function(){}) 등록;
+            // $('선택자').이벤명() 실행;
+        })
+    </script>
+    <style></style>
+</head>
+<body>
+    <input type="text" id="start">
+    <input type="text" id="end">
+    <button class="btn">클릭</button>
+</body>
+</html>
