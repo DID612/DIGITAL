@@ -27,4 +27,6 @@ public interface BoardDao {
 
 	ArrayList<FileVo> getFileList(@Param("num")int num);
 	//integer 대신 int로 넘겨봣음
+
+	void deleteFile(@Param("num")int num);
 }
