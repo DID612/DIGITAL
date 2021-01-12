@@ -1,86 +1,106 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@DID612 
+st8324
+/
+naver
+1
+01
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+naver/index.html
+@st8324
+st8324 네이버 따라하기1
+Latest commit 9718878 16 hours ago
+ History
+ 1 contributor
+1212 lines (1212 sloc)  49.5 KB
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>naver예제</title>
-    <script src="js/jquery.js"></script>
-    <link rel="stylesheet" href="css/naver.css">
+	<title>네이버</title>
+	<link rel="stylesheet" href="css/naver.css">
+	<script src="js/jquery.js"></script>
 	<script src="https://kit.fontawesome.com/b1e3c8f87d.js" 
 		crossorigin="anonymous"></script>
-    <script>
-        $(function(){
-			
-
-            //검색창에서 자동완성 버튼 클릭
-            $('.auto-btn').click(function(){
-                var str = '<div class = "auto-btn-box"></div>';
-                // 이벤트 function 부분에 매개변수로 e를 추가하면 이벤트 정보가 담겨옴
-                // $('.auto-ico').toggleClass('reverse-auto-ico');
-                $(this).toggleClass('rev');
+	<script>
+		$(function(){
+			//검색창에서 자동완성버튼을 클릭
+			$('.search-box .auto-btn').click(function(e){
+				//이벤트 function부분에 매개변수로 e를 추가하면 이벤트 정보가
+				//e에 담겨옴
+				//태그마다 기본 실행하는 동작이 있는데 해당 동작을 막아주는 역할
+				e.preventDefault();
+				//$('.search-box .auto-btn .auto-ico').toggleClass('reverse-auto-ico');
+				$(this).toggleClass('rev');
 				$('.header .auto-box').toggle();
-            })
-
-			//페이지 넘기기 클릭시 이벤트
-			// $('.shop-list-body').find('.next-btn').click(function(e){
-			// 	var currentPage = $('.shop-list-body .list-header-box').find('.current').text();
-			// 	currentPage = page(++currentPage);
-			// 	$('.shop-list-body').find('.current').text(currentPage);
-			// 	e.preventDefault();
-			// })
-			$('.shop-list-body').find('.next-btn').click(function(e){
-				var currentPage = $('.shop-list-body').find('.current').first().text();
-				currentPage = page(++currentPage);
+			});
+			//.shop-list-body에 있는 >버튼을 클릭
+			$('.shop-list-body .next-btn').click(function(e){
+				e.preventDefault();
+				var currentPage = 
+					$(this).parents('.c-box').find('.current').text();
+				currentPage = getPage(++currentPage,1,19);
 				$('.shop-list-body .current').text(currentPage);
-				e.preventDefault();
 			})
-			$('.shop-list-body').find('.prev-btn').click(function(e){
-				var currentPage = $('.shop-list-body').find('.current').first().text();
-				currentPage = page(--currentPage);
+			//.shop-list-body에 있는 <버튼을 클릭
+			$('.shop-list-body .prev-btn').click(function(e){
+				e.preventDefault();
+				var currentPage = 
+					$(this).parents('.c-box').find('.current').text();
+				currentPage = getPage(--currentPage,1,19);
 				$('.shop-list-body .current').text(currentPage);
-				e.preventDefault();
 			})
-			$('.shop-list-middle').find('.next-btn').click(function(e){
-				var currentPage = $('.shop-list-middle').find('.current').text();
-				currentPage = page2(++currentPage);
-				$('.shop-list-middle').find('.current').text(currentPage);
+			//shop-list-middle 에 있는 <버튼을 클릭하거나 shop-list-footer에 있는 <버튼을 클릭
+			$('.shop-list-middle .prev-btn,.shop-list-footer .prev-btn').click(function(e){
 				e.preventDefault();
+				var currentPage = 
+					$(this).parent().siblings('.num-box').find('.current').text();
+				currentPage = getPage(--currentPage,1,4);
+				$(this).parent().siblings('.num-box').find('.current')
+					.text(currentPage);
 			})
-			$('.shop-list-middle').find('.prev-btn').click(function(e){
-				var currentPage = $('.shop-list-middle').find('.current').text();
-				currentPage = page2(--currentPage);
-				$('.shop-list-middle').find('.current').text(currentPage);
+			//shop-list-middle 에 있는 >버튼을 클릭하거나 shop-list-footer에 있는 >버튼을 클릭
+			$('.shop-list-middle .next-btn,.shop-list-footer .next-btn').click(function(e){
 				e.preventDefault();
+				var currentPage = 
+					$(this).parent().siblings('.num-box').find('.current').text();
+				currentPage = getPage(++currentPage,1,4);
+				$(this).parent().siblings('.num-box').find('.current')
+					.text(currentPage);
 			})
-			$('.shop-list-footer').find('.next-btn').click(function(e){
-				var currentPage = $('.shop-list-footer').find('.current').text();
-				currentPage = page2(++currentPage);
-				$('.shop-list-footer').find('.current').text(currentPage);
-				e.preventDefault();
+			//메뉴에 더보기 버튼/접기 버튼을 클릭
+			$('.more-btn').click(function(){
+				$('.memu-service-box').toggle();
+				if(!$(this).hasClass('fold')){
+					$(this).text('접기');
+				}else{
+					$(this).text('더보기');
+				}
+				$(this).toggleClass('fold');
 			})
-			$('.shop-list-footer').find('.prev-btn').click(function(e){
-				var currentPage = $('.shop-list-footer').find('.current').text();
-				currentPage = page2(--currentPage);
-				$('.shop-list-footer').find('.current').text(currentPage);
-				e.preventDefault();
-			})
-
-			//페이지 넘기기 함수
-			function page(page){
-				var min = 1, max = 19;
-				if(page < min) return max;
-				if(page > max) return min;
-				return page;
-			}
-			//페이지 넘기기 함수2
-			function page2(page){
-				var min = 1, max = 4;
-				if(page < min) return max;
-				if(page > max) return min;
-				return page;
-			}
-        })
-    </script>
+		});
+		function getPage(page,min,max){
+			if(page < min)	return max;
+			if(page > max)	return min;
+			return page;
+		}
+	</script>
 </head>
 <body>
 	<div class="header">
@@ -106,7 +126,7 @@
 						<a href="#" class="report">신고</a>
 					</div>
 					<div class="right-box">
-						<a href="#" class="suggest-on">자동완성 기능</a>
+						<a href="#"class="close-auto-btn">자동완성 끄기</a>
 					</div>
 				</div>
 			</form>
@@ -188,6 +208,7 @@
 				</a>
 			</div>
 		</div>
+		<div class="memu-service-box"></div>
 	</div>
 	<div class="contents">
 		<div class="container after">
@@ -850,7 +871,7 @@
 							</div>
 							<div class="shop-list-body after">
 								<div class="list-header-box">
-									<div class="list-control-box">
+									<div class="list-control-box c-box">
 										<div class="num-box">
 											<span class="current">1</span>/19
 										</div>
@@ -996,7 +1017,7 @@
 										</li>
 									</ul>
 								</div>
-								<div class="list-footer-box">
+								<div class="list-footer-box c-box">
 									<a href="#"class="prev-btn"></a>
 									<div class="num-box">
 										<span class="current">1</span>/19
@@ -1219,3 +1240,15 @@
 	<a href="#body" class="up-btn"></a>
 </body>
 </html>
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
