@@ -8,6 +8,10 @@ import java.util.Date;
  * @author Administrator
  *
  */
+/**
+ * @author Administrator
+ *
+ */
 public class BoardVo {
 	private int num;
 	private String title;
@@ -15,6 +19,8 @@ public class BoardVo {
 	private String content;
 	private Date registerDate;
 	private String isDel;
+	private int views;
+	
 	public int getNum() {
 		return num;
 	}
@@ -39,6 +45,12 @@ public class BoardVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
+	}
 	public String getRegisterDate() {
 		SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		String dateString = simpleFormat.format(registerDate);
@@ -60,7 +72,7 @@ public class BoardVo {
 	@Override
 	public String toString() {
 		return "BoardVo [num=" + num + ", title=" + title + ", writer=" + writer + ", content=" + content
-				+ ", registerDate=" + registerDate + ", isDel=" + isDel + "]";
+				+ ", registerDate=" + registerDate + ", isDel=" + isDel + ", views=" + views + "]";
 	}
-	
+
 }

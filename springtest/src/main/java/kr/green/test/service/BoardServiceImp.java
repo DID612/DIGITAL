@@ -63,4 +63,11 @@ public class BoardServiceImp implements BoardService {
 		oriBoard.setIsDel("Y");
 		boardDao.updateBoard(oriBoard);
 	}
+
+	@Override
+	public void Views(Integer num) {
+		if(num == null)
+			return;
+		boardDao.updateViews(num);
+	}
 }

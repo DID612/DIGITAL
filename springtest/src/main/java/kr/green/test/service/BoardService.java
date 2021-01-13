@@ -18,5 +18,7 @@ public interface BoardService {
 	void modifyBoard(BoardVo board, UserVo user);
 
 	void deleteBoard(Integer num, HttpServletRequest request);
+
+	void Views(Integer num);
 	
 }

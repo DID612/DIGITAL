@@ -43,6 +43,7 @@ public class BoardController {
 	//controller는 연결된 value의 매개변수 중에 이름이 같은 애가 있다면 다 들여온다!! 둘만의 약속
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
 	public ModelAndView boardDetailGet(ModelAndView mv, Integer num) {
+		boardService.Views(num);
 		BoardVo board = boardService.getBoard(num);
 		mv.addObject("board",board);
 		//내가 보내주는 정보를 "board"라는 이름으로 모아 받아.

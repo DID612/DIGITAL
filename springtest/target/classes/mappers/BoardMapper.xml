@@ -18,4 +18,9 @@
   	set title=#{board.title}, content=#{board.content}, isDel = #{board.isDel}
   	where num = #{board.num}
   </update>
+    <update id="updateViews" parameterType="kr.green.test.vo.BoardVo">
+  	update board
+  	set views= views + 1
+  	where num = #{num} and isDel = 'N'
+  </update>
 </mapper>

@@ -19,5 +19,7 @@ public interface BoardDao {
 
 //	왜 안될까? oriboard
 	void updateBoard(@Param("board")BoardVo oriboard);
+
+	void updateViews(@Param("num")Integer num);
 	
 }
