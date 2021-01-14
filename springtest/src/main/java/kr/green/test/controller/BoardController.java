@@ -39,8 +39,10 @@ public class BoardController {
 	public ModelAndView boardListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) {
 		ArrayList<BoardVo> list = boardService.getBoardList(cri);
 		int displayPageNum = 3;
+//		int totalCount = boardService.getTotalCount();
 		//서비스에게 전체게시글 수를 알려달라 한 뒤 저장
-		int totalCount = boardService.getTotalCount();
+		//gettype setsearch만 해줘도 되지만 매개변수 하나 넘기는게 간단하니 cri
+		int totalCount = boardService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(cri,displayPageNum,totalCount);
 		mv.addObject("pm", pm);
 		mv.addObject("list",list);
@@ -49,9 +51,10 @@ public class BoardController {
 	}
 	//controller는 연결된 value의 매개변수 중에 이름이 같은 애가 있다면 다 들여온다!! 둘만의 약속
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public ModelAndView boardDetailGet(ModelAndView mv, Integer num) {
+	public ModelAndView boardDetailGet(ModelAndView mv, Integer num, Criteria cri) {
 		boardService.Views(num);
 		BoardVo board = boardService.getBoard(num);
+		mv.addObject("cri", cri);
 		mv.addObject("board",board);
 		//내가 보내주는 정보를 "board"라는 이름으로 모아 받아.
 		//mv.addObject("board",boardService.getBoard(num));

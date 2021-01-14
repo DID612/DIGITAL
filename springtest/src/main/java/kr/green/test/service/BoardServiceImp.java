@@ -75,13 +75,11 @@ public class BoardServiceImp implements BoardService {
 
 	@Override
 	public int getTotalCount(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getTotalCount() {
-		// TODO Auto-generated method stub
-		return boardDao.getTotalCount();
+		//페이지네이션 기능: 다오에게 전체 게시글 ㅅ ㅜ를 요청
+		//return boardDao.getTotalCount();
+		
+		//페이지네이션+검색 : 다오에게 전체 게시글이 아닌 현재 페이지 정보에
+		//(검색타입,검색어 포함) 맞는 게시글을 가져오라고 요청하도록 수정
+		return boardDao.getTotalCount(cri);
 	}
 }

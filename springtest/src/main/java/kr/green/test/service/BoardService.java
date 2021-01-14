@@ -23,7 +23,4 @@ public interface BoardService {
 	void Views(Integer num);
 
 	int getTotalCount(Criteria cri);
-
-	int getTotalCount();
-	
 }

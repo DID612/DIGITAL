@@ -5,13 +5,43 @@
 <mapper namespace="kr.green.test.dao.BoardDao">
 <!-- (수정)전체 게시글이 아니라 현재 페이지에 맞는 게시글을 가져오도록 limit를 이용하여 쿼리를 수정 -->
   <select id="getBoardList" resultType="kr.green.test.vo.BoardVo">
-    select * from board where isDel = "N" order by num desc
+    select * from board where isDel = "N" 
+    <!-- +하기 써서 %제목% 식으로 붙일 수도 있지만 문자열 붙일 때는 concat을 쓴다!-->
+    	<if test="cri.type == 1">
+    		and (title like concat('%',#{cri.search}, '%')
+    		or content like concat('%',#{cri.search}, '%')
+    		or writer like concat('%',#{cri.search}, '%'))
+    	</if>
+    	<if test="cri.type == 2">
+    		and title like concat('%',#{cri.search}, '%')
+    	</if>
+    	<if test="cri.type == 3">
+    		and content like concat('%',#{cri.search}, '%')
+    	</if>
+    	<if test="cri.type == 4">
+    		and writer like concat('%',#{cri.search}, '%')
+    	</if>
+    order by num desc
     limit #{cri.pageStart}, #{cri.perPageNum}
   </select>
   
   <!-- 전체 게시글 수를 알려주는 쿼리문 생성 -->
   <select id="getTotalCount" resultType="int">
     select count(*) from board where isDel = "N"
+    	<if test="cri.type == 1">
+    		and (title like concat('%',#{cri.search}, '%')
+    		or content like concat('%',#{cri.search}, '%')
+    		or writer like concat('%',#{cri.search}, '%'))
+    	</if>
+    	<if test="cri.type == 2">
+    		and title like concat('%',#{cri.search}, '%')
+    	</if>
+    	<if test="cri.type == 3">
+    		and content like concat('%',#{cri.search}, '%')
+    	</if>
+    	<if test="cri.type == 4">
+    		and writer like concat('%',#{cri.search}, '%')
+    	</if>
   </select>
   
   <select id="getBoard" resultType="kr.green.test.vo.BoardVo">

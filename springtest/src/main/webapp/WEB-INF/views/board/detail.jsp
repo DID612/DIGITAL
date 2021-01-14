@@ -40,10 +40,10 @@
 	  </form>
   </c:if>
   <c:if test="${board == null}">
-  <h1>존재하지 않은 게시글입니다.</h1>
+  	<h1>존재하지 않은 게시글입니다.</h1>
   </c:if>
 </div>
-	<a href="<%=request.getContextPath()%>/board/list">
+	<a href="<%=request.getContextPath()%>/board/list?page=${cri.page}&type=${cri.type}&search=${cri.search}">
 		    <button type="button" class="btn btn-primary">목록</button>
 	</a>
 	<c:if test="${user != null && user.id == board.writer}">
