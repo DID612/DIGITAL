@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVo;
 import kr.green.test.vo.UserVo;
 
 public interface BoardService {
 
-	ArrayList<BoardVo> getBoardList();
+	ArrayList<BoardVo> getBoardList(Criteria cri);
 
 	BoardVo getBoard(Integer num);
 
@@ -20,5 +21,9 @@ public interface BoardService {
 	void deleteBoard(Integer num, HttpServletRequest request);
 
 	void Views(Integer num);
+
+	int getTotalCount(Criteria cri);
+
+	int getTotalCount();
 	
 }

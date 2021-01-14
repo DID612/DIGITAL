@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.green.test.dao.BoardDao;
+import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVo;
 import kr.green.test.vo.UserVo;
 
@@ -17,8 +18,9 @@ public class BoardServiceImp implements BoardService {
 	private BoardDao boardDao;
 
 	@Override
-	public ArrayList<BoardVo> getBoardList() {
-		return boardDao.getBoardList();
+	public ArrayList<BoardVo> getBoardList(Criteria cri) {
+		// (수정)다오의 getBoardList()를 getgetBoardList(Criteria cri)로 수정
+		return boardDao.getBoardList(cri);
 	}
 
 	@Override
@@ -69,5 +71,17 @@ public class BoardServiceImp implements BoardService {
 		if(num == null)
 			return;
 		boardDao.updateViews(num);
+	}
+
+	@Override
+	public int getTotalCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return boardDao.getTotalCount();
 	}
 }
