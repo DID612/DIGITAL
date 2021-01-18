@@ -1,0 +1,10 @@
+첨부파일 다운로드
+
+- /board/detail.jsp
+  - 첨부파일 링크를 수정:
+    /board/doewnload?filename=/2021/01/15/uuid_파일명
+
+- Controller
+ - /board/download 메소드 추가
+  - 샘플코드 복붙
+  - 컨트롤러 메소드의 매개변수 이름과 /board/detail.jsp의 url에 있는 변수명을 일치시켜야한다.

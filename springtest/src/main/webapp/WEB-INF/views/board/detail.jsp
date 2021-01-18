@@ -37,8 +37,20 @@
 	      <label for="content">내용:</label>
 	      <textarea rows="10" class="form-control" rows="5" id="content" name="content" readonly value>${board.content}</textarea>
 	    </div>
-	  </form>
-  </c:if>
+	    <!-- flist != null 하면 flist는 list가 하나도 안들어있는거지 null 값이 아니기 때문에 원하는 결과가 나오지 않음-->
+	    <c:if test="${fList.size() != 0 }">
+		<div class="form-group">
+			<label for="fList">첨부 파일:</label>
+			<c:forEach var= "file" items="${fList}">
+				<div>
+					<a href="<%=request.getContextPath()%>/board/download?filename=${file.filename}">
+					${file.oriFilename}
+					</a>
+				</div>
+			</c:forEach>
+		</div>
+	    </c:if>
+	</c:if>
   <c:if test="${board == null}">
   	<h1>존재하지 않은 게시글입니다.</h1>
   </c:if>

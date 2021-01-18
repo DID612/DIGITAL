@@ -39,7 +39,7 @@
 	  <c:if test="${fList.size() != 0}">
 	  	<div class="form-group">
 	      <label for="content">첨부파일</label>
-	      <c:forEach items="${fList}" var="file">
+	      <c:forEach items="${fList}" var="file"><!-- 컨트롤러가 화면에 보내준 fList를 var ="file" 이라고 명명함 따라서 file.fileName 같은게 되는것 -->
 	      	<div><a href="<%=request.getContextPath()%>/board/download?fileName=${file.fileName}">${file.oriFilename}</a></div>	      
 	      </c:forEach>
 	    </div>

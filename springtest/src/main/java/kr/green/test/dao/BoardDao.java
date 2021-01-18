@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.green.test.vo.BoardVo;
+import kr.green.test.vo.FileVo;
 import kr.green.test.vo.UserVo;
 import kr.green.test.pagination.Criteria;
 
@@ -18,11 +19,20 @@ public interface BoardDao {
 
 	void registerBoard(@Param("board")BoardVo board);
 
-//	왜 안될까? oriboard
+//	왜 안될까? BoardVo oriboard 이기 때문에 oriboard.num 이런식으로
 	void updateBoard(@Param("board")BoardVo oriboard);
 
 	void updateViews(@Param("num")Integer num);
 
 	int getTotalCount(@Param("cri")Criteria cri);
+
+	void registerBoard(@Param("num")int num, @Param("filename")String originalFilename, @Param("path")String path);
+
+	void registerFile(@Param("num")int num, @Param("filename")String originalFilename, @Param("path")String path);
+
+	// 그냥 int num이기 때문에 #{num}
+	ArrayList<FileVo> getFile(@Param("num")int num);
+
+	void deleteFile(@Param("num")Integer num);
 	
 }

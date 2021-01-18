@@ -47,7 +47,7 @@
   <select id="getBoard" resultType="kr.green.test.vo.BoardVo">
     select * from board where num = #{num} and isDel = 'N'
   </select>
-  <insert id="registerBoard" parameterType="kr.green.test.vo.BoardVo">
+  <insert id="registerBoard" useGeneratedKeys="true" keyProperty="board.num" parameterType="kr.green.test.vo.BoardVo">
   	insert into board(title,writer,content)
   		values(#{board.title},#{board.writer},#{board.content})
   </insert>
@@ -61,4 +61,20 @@
   	set views= views + 1
   	where num = #{num} and isDel = 'N'
   </update>
+  
+  <insert id="registerFile">
+  	insert into files(boardNum, oriFilename, filename)
+  		values(#{num},#{filename},#{path})
+  </insert>
+  
+  <select id="getFile" resultType="kr.green.test.vo.FileVo">
+    select * from files where isDel = 'N' and boardNum = #{num}
+  </select>
+  
+  <update id="deleteFile" parameterType="kr.green.test.vo.FileVo">
+  	update files
+  	set isDel = 'Y'
+  	where boardNum = ${num}
+  </update>
+  
 </mapper>
