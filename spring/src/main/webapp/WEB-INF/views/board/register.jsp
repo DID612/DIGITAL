@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -19,13 +21,11 @@
 	      <label for="writer" readonly>작성자</label>
 	      <input type="text" class="form-control" id="writer" name="writer" readonly value = "${user.id}">
 	    </div>
-	    <div class="form-group">
+	    <div class="form-group" style ="display : none">
 	      <label for="content">내용</label>
 	      <textarea class="form-control" id="content" name="content"></textarea>
 	    </div>
-	    <a href="<%=request.getContextPath()%>/board/register">
-	  	<button type="submit" class="btn btn-outline-info">등록</button>
-	  	</a>
+	    <div id="summernote"></div>
 		<div class="form-group">
 	        <label>파일</label>
 	        <input type="file" class="form-control" name="fileList"/>
@@ -38,10 +38,26 @@
 	        <label>파일</label>
 	        <input type="file" class="form-control" name="fileList"/>
 	    </div>
+	  <a href="<%=request.getContextPath()%>/board/register">
+	  	<button type="submit" class="btn btn-outline-info">등록</button>
+	  </a>
+	    
 	  </form>
 	  <a href="<%=request.getContextPath()%>/board/list">
 	  	<button type="button" class="btn btn-outline-info">목록</button>
 	  </a>
 	</div>
+	<script>
+      $('#summernote').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 2,
+        height: 100
+      });
+      
+      $('form').submit(function(){
+    	  var code = $('#summernote').summernote('code');
+    	  $('textarea[name=content]').val(code);
+      })
+    </script>
 </body>
 </html>

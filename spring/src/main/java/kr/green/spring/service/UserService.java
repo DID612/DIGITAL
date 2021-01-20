@@ -24,4 +24,8 @@ public interface UserService {
 	
 	public UserVo getUser(HttpServletRequest request);
 
+	void updateAuthor(UserVo userVo);
+
+	void updateUser(UserVo dbUser);
+
 }

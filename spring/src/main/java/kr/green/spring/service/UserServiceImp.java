@@ -105,4 +105,18 @@ public class UserServiceImp implements UserService{
 		UserVo user = (UserVo)request.getSession().getAttribute("user");
 		return user;
 	}
+
+	@Override
+	public void updateAuthor(UserVo userVo) {
+		userDao.updateAuthor(userVo);
+	}
+
+	@Override
+	public void updateUser(UserVo dbUser) {
+		if(dbUser.getPw().equals(""))
+			return;
+		String encodePw = passwordEncoder.encode(dbUser.getPw());
+		dbUser.setPw(encodePw);
+		userDao.updateUser(dbUser);
+	}
 }

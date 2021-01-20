@@ -18,4 +18,8 @@ public interface UserDao {
 	public ArrayList<UserVo> getAllUser();
 
 	public void insertUser(@Param("user")UserVo user);
+
+	public void updateAuthor(@Param("user")UserVo userVo);
+
+	public void updateUser(@Param("user")UserVo dbUser);
 }
