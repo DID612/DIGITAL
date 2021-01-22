@@ -113,8 +113,14 @@ public class UserServiceImp implements UserService{
 
 	@Override
 	public void updateUser(UserVo dbUser) {
-		if(dbUser.getPw().equals(""))
+//		if(dbUser.getPw().equals(""))
+//			return;
+//		String encodePw = passwordEncoder.encode(dbUser.getPw());
+//		dbUser.setPw(encodePw);
+//		userDao.updateUser(dbUser);
+		if(dbUser == null)
 			return;
+		
 		String encodePw = passwordEncoder.encode(dbUser.getPw());
 		dbUser.setPw(encodePw);
 		userDao.updateUser(dbUser);

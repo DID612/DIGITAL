@@ -14,4 +14,8 @@ public interface UserService {
 	UserVo isUser(String id, String pw);
 	
 	UserVo getUser(HttpServletRequest request);
+
+	void updateUser(UserVo user);
+
+	void sendMail(String title, String content, String email);
 }

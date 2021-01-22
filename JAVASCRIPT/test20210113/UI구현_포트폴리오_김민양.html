@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/b1e3c8f87d.js" crossorigin="anonymous"></script>
+    <style>
+            .page_box{
+                background-color: rgb(236, 212, 181);
+            }
+            .logo_wrap,
+            .logo_wrap .logo,
+            .logo_wrap .menu{
+                display: inline-block;
+            }   
+            .logo_wrap .logo{margin: 0 50px 0 30px;}
+            .logo_wrap .menu{margin: 0 15px 0 15px;}
+            .logo_box{
+                width: 400px;
+            }
+            .search_box{
+                display: inline-block;
+                position: absolute; 
+                right: 15px;
+            }
+            input{
+                height: 30px;
+                border-radius: 5px;
+                border-color: red;
+                margin-top: 13px;
+            }
+            .content{
+                width: 100%;
+                border: 1px solid black;
+                margin-top: 30px;
+            }
+        @media (max-width: 640px) {
+            .logo_wrap .menu{display: none;}
+            .content{
+                height: 1000px;
+            }
+        }
+        @media (min-width: 641px) {
+            .hamburger_menu{display: none; }
+            .content{
+                height: 700px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page_box">
+        <div class="logo_box">
+            <div class="logo_wrap">
+                <div class="logo"><h3>로고</h3></div>
+                <div class="menu"><h3>메뉴1</h3></div>
+                <div class="menu"><h3>메뉴2</h3></div>
+                <div class="menu"><h3>메뉴3</h3></div>
+            </div>
+            <div class="search_box">
+                <input type="text" style="width: 300px;">
+                <input type="button" value="검색" style="width: 100px; background-color: rgb(236, 212, 181);">
+                <span class="hamburger_menu"><i class="fas fa-bars"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="content"></div>
+</body>
+</html>

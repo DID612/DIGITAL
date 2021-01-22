@@ -18,7 +18,32 @@
       <label for="pwd">Password:</label>
       <input type="password" class="form-control" id="pwd" name="password">
     </div>
-    <button type="submit" class="btn btn-primary col-12">Submit</button>
+    <button type="submit" class="btn btn-primary col-12">로그인</button>
   </form>
+  <a href="#" class="find-pw">비밀번호 찾기</a>
+  <script type="text/javascript">
+  	$('.find-pw').click(function(e){
+  		e.preventDefault();
+  	  	var id = prompt('아이디를 입력하세요');
+  		var data = {"id" : id}
+		$.ajax({
+	        async:true,
+	        type:'POST',
+	        data:data,
+	        url:"<%=request.getContextPath()%>/find/pw",
+	        success : function(data){
+/* 				if(result == "fail"){
+					alert('존재하지 않는 아이디');
+				}else if(result == "success"){
+					alert('비밀번호를 등록한 이메일로 전송했습니다.')
+				}*/
+				if(data == "fail")
+					alert('존재하지 않은 아이디')
+				else
+					alert('비밀번호를 등록한 메일로 전송했습니다.')
+	        }  
+	    })
+  	})
+  </script>
 </body>
 </html>

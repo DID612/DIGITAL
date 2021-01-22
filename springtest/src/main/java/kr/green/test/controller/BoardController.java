@@ -30,6 +30,7 @@ import kr.green.test.service.UserService;
 import kr.green.test.utils.UploadFileUtils;
 import kr.green.test.vo.BoardVo;
 import kr.green.test.vo.FileVo;
+import kr.green.test.vo.LikeVo;
 import kr.green.test.vo.TestVo;
 import kr.green.test.vo.UserVo;
 
@@ -66,9 +67,20 @@ public class BoardController {
 	}
 	//controller는 연결된 value의 매개변수 중에 이름이 같은 애가 있다면 다 들여온다!! 둘만의 약속
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public ModelAndView boardDetailGet(ModelAndView mv, Integer num, Criteria cri) {
+	public ModelAndView boardDetailGet(ModelAndView mv, Integer num, Criteria cri, HttpServletRequest request) {
 		boardService.Views(num);
+		UserVo user = userService.getUser(request);
 		BoardVo board = boardService.getBoard(num);
+		//board.getNum 숫자 없어서 빈 문자열 가져올 수 있고 그것 때문에 에러 뜰 수 있으니 주의하자. num이 더 낫다.
+		//로그인 한 경우에만 추천/비추천 정보를 가져와서 화면에 전달
+		if(user != null) {
+			LikeVo like = new LikeVo(num,user.getId());	
+			LikeVo dbLike = boardService.getLike(like);
+			System.out.println("/board/detail 추천정보: " + dbLike);
+			mv.addObject("like", dbLike);
+		}
+		//null과 빈 문자열...
+//		boardService.updateLike(likeVo);
 		//board.getNum() 안하는 이유는 존재하지 않는 번호를 입력해 글을 불러왔을때 null 값을 board는 받게 되는데 null에서 값을 찾으면 nullbind에러
 		ArrayList<FileVo> fList = boardService.getFile(num);
 		mv.addObject("cri", cri);
@@ -79,6 +91,7 @@ public class BoardController {
 		mv.setViewName("/board/detail");
 		return mv;
 	}
+	
 	@RequestMapping(value = "/board/register", method = RequestMethod.GET)
 	public ModelAndView registerGet(ModelAndView mv, HttpServletRequest request) {
 		mv.setViewName("/board/register");
@@ -236,4 +249,13 @@ public class BoardController {
 		mv.setViewName("/main/test2");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/board/like", method = RequestMethod.POST)
+	@ResponseBody
+	public String boardLikeGet(LikeVo likeVo) {
+		// 기본생성자 안 만들면 LikeVo likeVo 할때 에러가 난다
+		boardService.updateLike(likeVo);
+		return "ok";
+	}
+	
 }

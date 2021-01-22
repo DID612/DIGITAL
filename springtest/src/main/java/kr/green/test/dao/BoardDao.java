@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import kr.green.test.vo.BoardVo;
 import kr.green.test.vo.FileVo;
+import kr.green.test.vo.LikeVo;
 import kr.green.test.vo.UserVo;
 import kr.green.test.pagination.Criteria;
 
@@ -34,5 +35,11 @@ public interface BoardDao {
 	ArrayList<FileVo> getFile(@Param("num")int num);
 
 	void deleteFile(@Param("num")Integer num);
+
+	LikeVo getLike(@Param("like")LikeVo likeVo);
+
+	void insertLike(@Param("like")LikeVo likeVo);
+
+	void updateLike(@Param("like")LikeVo likeVo);
 	
 }
